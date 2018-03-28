@@ -24,13 +24,15 @@ public class TPSIServer {
     static class RootHandler implements HttpHandler {
         public void handle(HttpExchange exchange) throws IOException {
             //System.out.println(String.valueOf(new InetSocketAddress(InetAddress.getLocalHost(),8000)));
-            //System.out.println(exchange.getRequestURI().toString());
+            System.out.println(exchange.getRequestURI().toString());
             //System.out.println(exchange.getRemoteAddress().toString());
 
             URL url = new URL(exchange.getRequestURI().toString());
             HttpURLConnection yc = (HttpURLConnection) url.openConnection();
             yc.setInstanceFollowRedirects(false);
             yc.setRequestProperty("Via",server.getAddress().getHostString());
+            yc.setRequestMethod(exchange.getRequestMethod());
+            System.out.println(exchange.getRequestMethod());
             //yc.setRequestProperty("Client-IP",exchange.getRemoteAddress().toString());
 
             Map request_headers = exchange.getRequestHeaders();
@@ -57,15 +59,21 @@ public class TPSIServer {
             }
 
             byte[] body = readFromStream(exchange.getRequestBody());
-            System.out.println(body);
+            System.out.println(exchange.getRequestBody().read());
             if(body.length > 0){
                 yc.setDoOutput(true);
                 OutputStream os = yc.getOutputStream();
                 os.write(body);
                 os.close();
             }
+            InputStream is;
+            if(yc.getResponseCode() > 400){
+                is = yc.getErrorStream();
+            }else{
+                is = yc.getInputStream();
+            }
 
-            byte[] response_bytes = readFromStream(yc.getInputStream());
+            byte[] response_bytes = readFromStream(is);
 
             Map headerFields = yc.getHeaderFields();
             for (Iterator iterator = headerFields.keySet().iterator(); iterator.hasNext();) {
