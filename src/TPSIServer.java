@@ -1,3 +1,4 @@
+import com.sun.deploy.util.BlackList;
 import com.sun.net.httpserver.*;
 import sun.misc.IOUtils;
 
@@ -5,6 +6,7 @@ import java.io.*;
 import java.net.*;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -12,7 +14,9 @@ import java.util.stream.Stream;
 
 public class TPSIServer {
     private static HttpServer server;
+    private static List BlackList;
     public static void main(String[] args) throws Exception {
+        loadBlackList("src/blacklist.txt");
         int port = 8000;
         server = HttpServer.create(new InetSocketAddress(port), 0);
         server.createContext("/", new RootHandler());
@@ -26,6 +30,11 @@ public class TPSIServer {
             //System.out.println(String.valueOf(new InetSocketAddress(InetAddress.getLocalHost(),8000)));
             System.out.println(exchange.getRequestURI().toString());
             //System.out.println(exchange.getRemoteAddress().toString());
+
+            if(onBlackList(exchange.getRequestURI().toString())){
+                System.out.println("on blacklist");
+                return;
+            }
 
             URL url = new URL(exchange.getRequestURI().toString());
             HttpURLConnection yc = (HttpURLConnection) url.openConnection();
@@ -122,5 +131,26 @@ public class TPSIServer {
         buffer.flush();
 
         return buffer.toByteArray();
+    }
+
+    private static boolean onBlackList(String url){
+        for (Iterator iterator = BlackList.iterator(); iterator.hasNext();) {
+            String element = (String) iterator.next();
+            if(url.startsWith(element)){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private static void loadBlackList(String filename) throws IOException {
+        FileReader fileReader = new FileReader(filename);
+        BufferedReader bufferedReader = new BufferedReader(fileReader);
+        BlackList = new ArrayList<String>();
+        String line = null;
+        while ((line = bufferedReader.readLine()) != null) {
+            BlackList.add(line);
+        }
+        bufferedReader.close();
     }
 }
