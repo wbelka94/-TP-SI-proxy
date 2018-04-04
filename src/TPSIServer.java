@@ -6,10 +6,8 @@ import java.io.*;
 import java.net.*;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
+import java.nio.file.StandardOpenOption;
+import java.util.*;
 import java.util.stream.Stream;
 
 public class TPSIServer {
@@ -37,6 +35,8 @@ public class TPSIServer {
             }
 
             URL url = new URL(exchange.getRequestURI().toString());
+            String c_l = exchange.getRequestHeaders().getFirst("Content-Length");
+            addStatistics(url.getHost(), c_l == null ? 0 : Integer.parseInt(c_l),true);
             HttpURLConnection yc = (HttpURLConnection) url.openConnection();
             yc.setInstanceFollowRedirects(false);
             yc.setRequestProperty("Via",server.getAddress().getHostString());
@@ -107,6 +107,7 @@ public class TPSIServer {
                 exchange.getResponseHeaders().set(key, v_str);
             }
 
+            addStatistics(url.getHost(),response_bytes.length,false);
 
             //byte[] response_bytes = response.getBytes();
             System.out.println(yc.getResponseCode());
@@ -152,5 +153,46 @@ public class TPSIServer {
             BlackList.add(line);
         }
         bufferedReader.close();
+    }
+
+    private static void addStatistics(String domain, int bytes, boolean isRequest) throws IOException {
+        FileReader fileReader = new FileReader("src/statistics.csv");
+        BufferedReader bufferedReader = new BufferedReader(fileReader);
+        List<Statistic> Statistics = new ArrayList<Statistic>();
+        String line = null;
+        while ((line = bufferedReader.readLine()) != null) {
+            Statistics.add(new Statistic(line));
+        }
+        bufferedReader.close();
+        if(Statistics.size() == 0){
+            int count = isRequest ? 1 : 0;
+            Statistics.add(new Statistic(domain+","+count+","+bytes+","));
+            System.out.println(domain+","+count+","+bytes+",");
+        }
+        for (Iterator iterator = Statistics.iterator(); iterator.hasNext();) {
+            System.out.println("for loop");
+            Statistic element = (Statistic) iterator.next();
+            if(element.checkDomain(domain)){
+                if(isRequest){
+                    element.addCount();
+                }
+                element.addBytes(bytes);
+                break;
+            }
+            else if(!iterator.hasNext()){
+                int count = isRequest ? 1 : 0;
+                Statistics.add(new Statistic(domain+","+count+","+bytes+","));
+                System.out.println(domain+","+count+","+bytes+",");
+                break;
+            }
+        }
+
+        PrintWriter writer = new PrintWriter("src/statistics.csv", "UTF-8");
+        for (Iterator iterator = Statistics.iterator(); iterator.hasNext();) {
+            Statistic element = (Statistic) iterator.next();
+            writer.println(element.toString());
+        }
+        writer.close();
+
     }
 }

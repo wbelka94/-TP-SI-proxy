@@ -2,10 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="bb932d3d-3378-462d-a044-ecb9ae18247b" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/blacklist.txt" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/Statistic.java" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/statistics.csv" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/out/production/proxy/TPSIServer$RootHandler.class" afterPath="$PROJECT_DIR$/out/production/proxy/TPSIServer$RootHandler.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/proxy/TPSIServer.class" afterPath="$PROJECT_DIR$/out/production/proxy/TPSIServer.class" />
+      <change beforePath="$PROJECT_DIR$/out/production/proxy/TPSIServer$RootHandler.class" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/out/production/proxy/TPSIServer.class" afterPath="" />
       <change beforePath="$PROJECT_DIR$/src/TPSIServer.java" afterPath="$PROJECT_DIR$/src/TPSIServer.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -18,11 +19,40 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="TPSIServer.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="TPSIServer.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/TPSIServer.java">
           <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="342">
+              <caret line="38" column="79" lean-forward="false" selection-start-line="38" selection-start-column="79" selection-end-line="38" selection-end-column="79" />
+              <folding>
+                <element signature="e#6174#6185#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Statistic.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Statistic.java">
+          <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="238">
-              <caret line="35" column="23" lean-forward="false" selection-start-line="35" selection-start-column="23" selection-end-line="35" selection-end-column="23" />
+              <caret line="14" column="37" lean-forward="false" selection-start-line="14" selection-start-column="37" selection-end-line="14" selection-end-column="37" />
+              <folding>
+                <element signature="e#477#478#0" expanded="true" />
+                <element signature="e#500#501#0" expanded="true" />
+                <element signature="e#538#539#0" expanded="true" />
+                <element signature="e#573#574#0" expanded="true" />
+                <element signature="e#604#605#0" expanded="true" />
+                <element signature="e#657#658#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="statistics.csv" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/statistics.csv">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="187">
+              <caret line="11" column="0" lean-forward="true" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -32,13 +62,26 @@
         <entry file="file://$PROJECT_DIR$/src/blacklist.txt">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="34">
-              <caret line="2" column="0" lean-forward="true" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
+              <caret line="2" column="0" lean-forward="false" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
     </leaf>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>Int</find>
+      <find>add</find>
+    </findStrings>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -52,6 +95,9 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/src/blacklist.txt" />
+        <option value="$PROJECT_DIR$/src/Statistics.java" />
+        <option value="$PROJECT_DIR$/src/Statistic.java" />
+        <option value="$PROJECT_DIR$/src/statistics.csv" />
         <option value="$PROJECT_DIR$/src/TPSIServer.java" />
       </list>
     </option>
@@ -114,6 +160,7 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Wojtek\Dropbox\Informatyka WI\semestr VIII\[TP-SI]\proxy\src" />
       <recent name="X:\[TP-SI]\proxy\src" />
     </key>
   </component>
@@ -248,7 +295,7 @@
       <workItem from="1522186154367" duration="675000" />
       <workItem from="1522250635921" duration="8536000" />
       <workItem from="1522268354250" duration="5252000" />
-      <workItem from="1522875369585" duration="927000" />
+      <workItem from="1522875369585" duration="4868000" />
     </task>
     <task id="LOCAL-00001" summary="all http methods, http error code">
       <created>1522273011204</created>
@@ -257,11 +304,18 @@
       <option name="project" value="LOCAL" />
       <updated>1522273011205</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="black list">
+      <created>1522876314442</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1522876314442</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="19469000" />
+    <option name="totallyTimeSpent" value="23410000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1696" height="1036" extended-state="6" />
@@ -304,7 +358,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="all http methods, http error code" />
-    <option name="LAST_COMMIT_MESSAGE" value="all http methods, http error code" />
+    <MESSAGE value="black list" />
+    <option name="LAST_COMMIT_MESSAGE" value="black list" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -315,7 +370,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="e#6174#6185#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -323,7 +380,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="e#6174#6185#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -331,7 +390,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="e#6174#6185#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -339,22 +400,49 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="e#6174#6185#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/blacklist.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="34">
-          <caret line="2" column="0" lean-forward="true" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
+          <caret line="2" column="0" lean-forward="false" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Statistic.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="14" column="37" lean-forward="false" selection-start-line="14" selection-start-column="37" selection-end-line="14" selection-end-column="37" />
+          <folding>
+            <element signature="e#477#478#0" expanded="true" />
+            <element signature="e#500#501#0" expanded="true" />
+            <element signature="e#538#539#0" expanded="true" />
+            <element signature="e#573#574#0" expanded="true" />
+            <element signature="e#604#605#0" expanded="true" />
+            <element signature="e#657#658#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/TPSIServer.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="35" column="23" lean-forward="false" selection-start-line="35" selection-start-column="23" selection-end-line="35" selection-end-column="23" />
+        <state relative-caret-position="342">
+          <caret line="38" column="79" lean-forward="false" selection-start-line="38" selection-start-column="79" selection-end-line="38" selection-end-column="79" />
+          <folding>
+            <element signature="e#6174#6185#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/statistics.csv">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="11" column="0" lean-forward="true" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
           <folding />
         </state>
       </provider>
