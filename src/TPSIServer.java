@@ -31,6 +31,7 @@ public class TPSIServer {
 
             if(onBlackList(exchange.getRequestURI().toString())){
                 System.out.println("on blacklist");
+                exchange.sendResponseHeaders(403,-1);
                 return;
             }
 
