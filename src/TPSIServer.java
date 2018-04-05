@@ -35,8 +35,6 @@ public class TPSIServer {
             }
 
             URL url = new URL(exchange.getRequestURI().toString());
-            String c_l = exchange.getRequestHeaders().getFirst("Content-Length");
-            addStatistics(url.getHost(), c_l == null ? 0 : Integer.parseInt(c_l),true);
             HttpURLConnection yc = (HttpURLConnection) url.openConnection();
             yc.setInstanceFollowRedirects(false);
             yc.setRequestProperty("Via",server.getAddress().getHostString());
@@ -69,6 +67,7 @@ public class TPSIServer {
 
             byte[] body = readFromStream(exchange.getRequestBody());
             System.out.println(exchange.getRequestBody().read());
+            addStatistics(url.getHost(),body.length,true);
             if(body.length > 0){
                 yc.setDoOutput(true);
                 OutputStream os = yc.getOutputStream();
@@ -165,9 +164,13 @@ public class TPSIServer {
         }
         bufferedReader.close();
         if(Statistics.size() == 0){
-            int count = isRequest ? 1 : 0;
-            Statistics.add(new Statistic(domain+","+count+","+bytes+","));
-            System.out.println(domain+","+count+","+bytes+",");
+            if(isRequest) {
+                Statistics.add(new Statistic(domain + "," + "1" + "," + bytes + ","+"0,"));
+            }
+            else{
+                Statistics.add(new Statistic(domain + ",0,0,"+bytes+","));
+            }
+            //System.out.println(domain+","+count+","+bytes+",");
         }
         for (Iterator iterator = Statistics.iterator(); iterator.hasNext();) {
             System.out.println("for loop");
@@ -175,14 +178,21 @@ public class TPSIServer {
             if(element.checkDomain(domain)){
                 if(isRequest){
                     element.addCount();
+                    element.addBytesOut(bytes);
                 }
-                element.addBytes(bytes);
+                else {
+                    element.addBytesIn(bytes);
+                }
                 break;
             }
             else if(!iterator.hasNext()){
-                int count = isRequest ? 1 : 0;
-                Statistics.add(new Statistic(domain+","+count+","+bytes+","));
-                System.out.println(domain+","+count+","+bytes+",");
+                if(isRequest) {
+                    Statistics.add(new Statistic(domain + "," + "1" + "," + bytes + ","+"0,"));
+                }
+                else{
+                    Statistics.add(new Statistic(domain + ",0,0,"+bytes+","));
+                }
+                //System.out.println(domain+","+count+","+bytes+",");
                 break;
             }
         }
